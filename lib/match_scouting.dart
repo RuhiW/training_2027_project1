@@ -1,6 +1,9 @@
 import 'dart:io';
 
-import 'main.dart';
+import 'package:training_2027_project1/models.dart';
+
+import 'input_helpers.dart';
+
 
 void runMatchScouting() {
   while (true) {
@@ -28,24 +31,6 @@ void runMatchScouting() {
     }
   }
 }
-void viewMatchData() {
-  int teamNumber = askForInt('Enter the team number you want to view: ');
-
-  for (Team team in teams) {
-    if (team.teamNumber == teamNumber) {
-
-      for (Match match in team.matches) {
-        print('Match ${match.matchNumber}');
-        print('Autonomous: ${match.autonomousScore}');
-        print('Teleop: ${match.teleopScore}');
-        print('Endgame: ${match.endgameScore}');
-        print('Fouls: ${match.fouls}');
-
-      }
-    }
-  }
-}
-
 
 
 void matchScout() {
@@ -58,7 +43,7 @@ void matchScout() {
   int endgameScore = askForInt('Enter the endgame score: ');
   int fouls = askForInt('Enter the number of fouls: ');
 
-  Match matchData = Match(
+  MatchScouting matchData = MatchScouting(
     matchNumber: matchNumber,
     autonomousScore: autonomousScore,
     teleopScore: teleopScore,
@@ -82,5 +67,35 @@ void matchScout() {
     );
 
     print('Added $teamName to registered teams');
+  }
+}
+
+void viewMatchData() {
+  int teamNumber = askForInt('Enter the team number you want to view: ');
+
+
+
+  for (Team team in teams) {
+    if (team.teamNumber == teamNumber) {
+      int totalFouls = 0;
+      int totalPoints = 0;
+
+      for (MatchScouting match in team.matches) {
+        totalFouls += match.fouls;
+        totalPoints +=
+            match.autonomousScore + match.teleopScore + match.endgameScore;
+
+        print('Match ${match.matchNumber}');
+        print('Autonomous score: ${match.autonomousScore}');
+        print('Teleop score: ${match.teleopScore}');
+        print('Endgame score: ${match.endgameScore}');
+        print('Fouls: ${match.fouls}');
+        print('Total score: ${match.autonomousScore + match.teleopScore +
+            match.endgameScore}');
+      }
+        print('Total number of fouls: $totalFouls');
+        double average = totalPoints / team.matches.length;
+        print('Average score: $average');
+      }
   }
 }

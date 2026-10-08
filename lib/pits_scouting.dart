@@ -1,6 +1,9 @@
 import 'dart:io';
 
-import 'main.dart';
+import 'input_helpers.dart';
+import 'models.dart';
+
+
 
 void scoutPits() {
   print('Scouting a team:');
