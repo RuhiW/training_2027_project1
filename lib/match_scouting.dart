@@ -9,7 +9,7 @@ void runMatchScouting() {
   while (true) {
     print('Choose an option: ');
     print('#1 Scout a team');
-    print('#2 View teams');
+    print('#2 View team data');
     print('');
     stdout.write('Select option: ');
 

@@ -13,7 +13,7 @@ void runCli(List<String> arguments) {
     while (true) {
       print('Choose an option: ');
       print('#1: Pits Scouting');
-      print('#2 Match Scouting');
+      print('#2: Match Scouting');
 
       try {
         String input = stdin.readLineSync() ?? '';
